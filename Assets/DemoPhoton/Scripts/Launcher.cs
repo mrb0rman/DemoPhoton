@@ -1,13 +1,18 @@
 using System;
+using DemoPhoton.Scripts;
+using DemoPhoton.Scripts.UI.UIWindow;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-    private void Awake()
+    private void Start()
     {
         PhotonNetwork.GameVersion = "0.0.1";
+        PhotonNetwork.NickName = "user " + (int)Random.Range(0, 999);;
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnected()
@@ -18,6 +23,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -25,5 +31,14 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("OnDisconnected - " + cause);
     }
     
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("OnCreatedRoom - " + PhotonNetwork.CurrentRoom.Name);
+    }
+
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("OnCreateRoomFailed - " + message);
+    }
     
 }
