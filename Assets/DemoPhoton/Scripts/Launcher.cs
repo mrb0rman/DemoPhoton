@@ -1,6 +1,4 @@
 using System;
-using DemoPhoton.Scripts;
-using DemoPhoton.Scripts.UI.UIWindow;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -11,7 +9,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.GameVersion = "0.0.1";
-        PhotonNetwork.NickName = "user " + (int)Random.Range(0, 999);;
+        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.NickName = "user " + (int)Random.Range(0, 999);
         PhotonNetwork.ConnectUsingSettings();
     }
 
@@ -23,7 +22,10 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
-        PhotonNetwork.JoinLobby();
+        if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)

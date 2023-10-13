@@ -10,7 +10,7 @@ namespace DemoPhoton.Scripts.UI.UIWindow
         [SerializeField] private TMP_InputField _inputNickname;
         [SerializeField] private TMP_InputField _inputRoomName;
         [SerializeField] private UIService _uiService;
-
+        
         public void OnClickButton()
         {
             if (!PhotonNetwork.IsConnected)
@@ -18,6 +18,10 @@ namespace DemoPhoton.Scripts.UI.UIWindow
                 return;
             }
 
+            if (!PhotonNetwork.InLobby)
+            {
+                return;
+            }
             InputFieldNickname();
             InputFieldRoomName();
             
@@ -28,7 +32,10 @@ namespace DemoPhoton.Scripts.UI.UIWindow
         private void InputFieldNickname()
         {
             var nickname = _inputNickname.text;
-
+            if (nickname == "")
+            {
+                return;
+            }
             PhotonNetwork.LocalPlayer.NickName = nickname;
         }
 

@@ -12,6 +12,12 @@ namespace DemoPhoton.Scripts.UI
 
         private List<RoomListing> _listRoom = new List<RoomListing>();
 
+        public override void OnJoinedRoom()
+        {
+            _content.DestroyChildren();
+            _listRoom.Clear();
+        }
+
         // Обновление списка созданных комнат
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
@@ -28,11 +34,15 @@ namespace DemoPhoton.Scripts.UI
                 }
                 else
                 {
-                    var listing = Instantiate(_roomListing, _content);
-                    if (listing != null)
+                    int index = _listRoom.FindIndex(x => x.RoomInfo.Name == info.Name);
+                    if (index == -1)
                     {
-                        listing.SetInfoRoom(info);
-                        _listRoom.Add(listing);
+                        var listing = Instantiate(_roomListing, _content);
+                        if (listing != null)
+                        {
+                            listing.SetInfoRoom(info);
+                            _listRoom.Add(listing);
+                        }
                     }
                 }
             }
