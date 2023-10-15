@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
+using DemoPhoton.Scripts.UI.UIWindow;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace DemoPhoton.Scripts.UI
 {
@@ -10,10 +12,12 @@ namespace DemoPhoton.Scripts.UI
     {
         [SerializeField] private Transform _content; 
         [SerializeField] private PlayerListing _playerListing;
-
+        [SerializeField] private TMP_Text _readyUpText;
+        [SerializeField] private UIRoomWindow _uiRoomWindow;
+        
         private List<PlayerListing> _listPlayer = new List<PlayerListing>();
         private bool _ready = false;
-
+        
         public override void OnEnable()
         {
             base.OnEnable();
@@ -31,10 +35,84 @@ namespace DemoPhoton.Scripts.UI
             }
             _listPlayer.Clear();
         }
+        
+        public override void OnMasterClientSwitched(Player newMasterClient)
+        {
+            _uiRoomWindow.OnClickLeaveRoom();
+        }
 
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            AddPlayerListing(newPlayer);
+            GetCurrentRoomPlayer();
+        }
+
+        public override void OnJoinedRoom()
+        {
+            GetCurrentRoomPlayer();
+        }
+
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            int index = _listPlayer.FindIndex(x => x.Player == otherPlayer);
+            if (index != -1)
+            {
+                Destroy(_listPlayer[index].gameObject);
+                _listPlayer.RemoveAt(index);
+            }
+        }
+        
+        public void OnClickStartGame()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                foreach (var player in _listPlayer)
+                {
+                    if (player.Player != PhotonNetwork.LocalPlayer)
+                    {
+                        if (!player.Ready)
+                        {
+                            return;
+                        }
+                    }
+                }
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+                PhotonNetwork.CurrentRoom.IsVisible = false;
+                PhotonNetwork.LoadLevel(1);
+            }
+        }
+
+        public void OnClickReadyUp()
+        {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                SetReadyUp(!_ready);
+                base.photonView.RPC(
+                    "RPCChangeReadyState", 
+                    RpcTarget.MasterClient,
+                    PhotonNetwork.LocalPlayer, 
+                    _ready);
+                
+                /*base.photonView.RpcSecure(
+                    "RPCChangeReadyState",
+                    RpcTarget.MasterClient,
+                    false,
+                    PhotonNetwork.LocalPlayer,
+                    _ready);*/
+            }
+        }
+        
         private void SetReadyUp(bool state)
         {
             _ready = state;
+            if (!_ready)
+            {
+                _readyUpText.text = "Not ready up";
+            }
+            else
+            {
+                _readyUpText.text = "Ready up";
+            }
         }
         
         private void GetCurrentRoomPlayer()
@@ -54,7 +132,7 @@ namespace DemoPhoton.Scripts.UI
                 AddPlayerListing(playerInfo.Value);
             }
         }
-
+        
         private void AddPlayerListing(Player newPlayer)
         {
             int index = _listPlayer.FindIndex(x => x.Player == newPlayer);
@@ -73,29 +151,14 @@ namespace DemoPhoton.Scripts.UI
             }
             
         }
-        
-        public override void OnPlayerEnteredRoom(Player newPlayer)
-        {
-            AddPlayerListing(newPlayer);
-        }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        [PunRPC]
+        private void RPCChangeReadyState(Player player, bool ready)
         {
-            int index = _listPlayer.FindIndex(x => x.Player == otherPlayer);
+            int index = _listPlayer.FindIndex(x => x.Player == player);
             if (index != -1)
             {
-                Destroy(_listPlayer[index].gameObject);
-                _listPlayer.RemoveAt(index);
-            }
-        }
-        
-        public void OnClickStartGame()
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                PhotonNetwork.CurrentRoom.IsOpen = false;
-                PhotonNetwork.CurrentRoom.IsVisible = false;
-                PhotonNetwork.LoadLevel(1);
+                _listPlayer[index].Ready = ready;
             }
         }
     }

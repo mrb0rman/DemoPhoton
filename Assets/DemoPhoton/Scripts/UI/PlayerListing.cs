@@ -9,6 +9,7 @@ namespace DemoPhoton.Scripts.UI
         [SerializeField] private TMP_Text _text;
 
         public Player Player { get; private set; }
+        public bool Ready = false;
         
         public void SetPlayerRoom(Player player)
         {
