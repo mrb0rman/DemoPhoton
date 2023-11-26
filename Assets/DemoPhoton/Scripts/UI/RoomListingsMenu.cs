@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using NetworkPlayer = BNG.NetworkPlayer;
 
 namespace DemoPhoton.Scripts.UI
 {
@@ -9,6 +10,8 @@ namespace DemoPhoton.Scripts.UI
     {
         [SerializeField] private Transform _content;
         [SerializeField] private RoomListing _roomListing;
+        private string RemotePlayerObjectName = "RemotePlayer";
+        
 
         private List<RoomListing> _listRoom = new List<RoomListing>();
 
@@ -23,6 +26,7 @@ namespace DemoPhoton.Scripts.UI
         {
             foreach (var info in roomList)
             {
+                Debug.Log(info);
                 if (info.RemovedFromList)
                 {
                     int index = _listRoom.FindIndex(x => x.RoomInfo.Name == info.Name);

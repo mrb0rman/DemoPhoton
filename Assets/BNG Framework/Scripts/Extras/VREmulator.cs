@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BNG {
 
-    public class VREmulator : MonoBehaviour {
+    public class VREmulator : MonoBehaviourPun {
 
         [Header("Enable / Disable : ")]
         [Tooltip("Use Emulator if true and HMDIsActive is false")]
@@ -111,7 +112,6 @@ namespace BNG {
         bool priorStraightSetting;
 
         void Start() {
-
             if(GameObject.Find("CameraRig")) {
                 mainCameraTransform = GameObject.Find("CameraRig").transform;
             }
@@ -170,7 +170,6 @@ namespace BNG {
         }
 
         void Update() {
-
             //// Considerd absent if specified or unknown status
             // bool userAbsent = XRDevice.userPresence == UserPresenceState.NotPresent || XRDevice.userPresence == UserPresenceState.Unknown;
             // Updated to show in Debug Settings

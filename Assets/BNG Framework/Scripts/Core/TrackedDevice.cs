@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -9,7 +10,7 @@ namespace BNG {
     /// A simple alternative to the TrackedPoseDriver component.
     /// Feel free to swap this out with a TrackedPoseDriver from the XR Legacy Input Helpers package or using the new Unity Input System
     /// </summary>
-    public class TrackedDevice : MonoBehaviour {
+    public class TrackedDevice : MonoBehaviourPun {
 
         public TrackableDevice Device = TrackableDevice.HMD;
 

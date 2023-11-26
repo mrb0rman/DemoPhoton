@@ -8,7 +8,6 @@ namespace DemoPhoton.Scripts.UI
     public class RoomListing : MonoBehaviour
     {
         [SerializeField] private TMP_Text _text;
-
         public RoomInfo RoomInfo { get; private set; }
         
         public void SetInfoRoom(RoomInfo roomInfo)

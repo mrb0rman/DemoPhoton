@@ -50,6 +50,7 @@ namespace DemoPhoton.Scripts.UI.UIWindow
                 roomName = "room " + (int)Random.Range(0, 999);
             }
 
+            
             PhotonNetwork.CreateRoom(roomName, options, TypedLobby.Default);
         }
     }

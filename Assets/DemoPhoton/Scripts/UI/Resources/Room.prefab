@@ -260,6 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 8981954136311344596}
+  _spawn: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!114 &2312893096516796775
 MonoBehaviour:
   m_ObjectHideFlags: 0

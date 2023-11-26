@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1400
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &3451451741646039549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31627,7 +31627,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1400
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1757598221605312627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54925,8 +54925,9 @@ GameObject:
   - component: {fileID: 4099825139283889204}
   - component: {fileID: 4099825139283889209}
   - component: {fileID: 5445516534446815995}
-  - component: {fileID: 2257646922502065658}
-  - component: {fileID: 1382134278720323045}
+  - component: {fileID: 8054209887439430902}
+  - component: {fileID: 6498591927473882218}
+  - component: {fileID: 3317424557564220684}
   m_Layer: 0
   m_Name: My XR Rig Advanced
   m_TagString: Untagged
@@ -55093,7 +55094,19 @@ MonoBehaviour:
   HMDIsActive: 0
   LeftControllerPosition: {x: -0.2, y: -0.2, z: 0.5}
   RightControllerPosition: {x: 0.2, y: -0.2, z: 0.5}
---- !u!114 &2257646922502065658
+--- !u!114 &8054209887439430902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7975589232180047026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a119c1aa63104127a99facfb0c8e5d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6498591927473882218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55111,11 +55124,13 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 8054209887439430902}
+  - {fileID: 3317424557564220684}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1382134278720323045
+--- !u!114 &3317424557564220684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58641,7 +58656,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 12000
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!1 &8514940200343790525
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using NetworkPlayer = BNG.NetworkPlayer;
 
 namespace DemoPhoton.Scripts.UI
 {
@@ -14,6 +16,7 @@ namespace DemoPhoton.Scripts.UI
         [SerializeField] private PlayerListing _playerListing;
         [SerializeField] private TMP_Text _readyUpText;
         [SerializeField] private UIRoomWindow _uiRoomWindow;
+        private string RemotePlayerObjectName = "RemotePlayer";
         
         private List<PlayerListing> _listPlayer = new List<PlayerListing>();
         private bool _ready = false;
@@ -43,12 +46,20 @@ namespace DemoPhoton.Scripts.UI
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
+            
             AddPlayerListing(newPlayer);
             GetCurrentRoomPlayer();
         }
 
         public override void OnJoinedRoom()
         {
+            Debug.Log("---OnJoinedRoom");
+            GameObject player = PhotonNetwork.Instantiate(RemotePlayerObjectName, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+            NetworkPlayer np = player.GetComponent<NetworkPlayer>();
+            if (np) {
+                np.transform.name = "MyRemotePlayer";
+                np.AssignPlayerObjects();
+            }
             GetCurrentRoomPlayer();
         }
 

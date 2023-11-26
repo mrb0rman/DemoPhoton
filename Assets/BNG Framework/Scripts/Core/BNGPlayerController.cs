@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 namespace BNG {
@@ -14,7 +15,7 @@ namespace BNG {
     /// <summary>
     /// The BNGPlayerController handles basic player movement
     /// </summary>
-    public class BNGPlayerController : MonoBehaviour {
+    public class BNGPlayerController : MonoBehaviourPun {
 
         [Header("Camera Options : ")]
 
@@ -152,7 +153,7 @@ namespace BNG {
         }
 
         void Update() {
-
+            
             // Sanity check for camera
             if (mainCamera == null && Camera.main != null) {
                 mainCamera = Camera.main.transform;
@@ -192,7 +193,7 @@ namespace BNG {
         }
        
         void FixedUpdate() {
-
+            
             UpdateDistanceFromGround();
 
             CheckPlayerElevationRespawn();

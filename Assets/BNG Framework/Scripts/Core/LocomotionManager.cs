@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BNG {
-    public class LocomotionManager : MonoBehaviour {
+    public class LocomotionManager : MonoBehaviourPun {
 
         [Header("Locomotion Type")]
         /// <summary>

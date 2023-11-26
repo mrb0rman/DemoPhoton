@@ -37,7 +37,6 @@ namespace Photon.Pun.Demo.PunBasics
 		/// </summary>
 	    void Update () 
 	    {
-
 			// Prevent control is connected to Photon and represent the localPlayer
 	        if( photonView.IsMine == false && PhotonNetwork.IsConnected == true )
 	        {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,7 @@ namespace BNG {
         Controller
     }    
 
-    public class SmoothLocomotion : MonoBehaviour {
+    public class SmoothLocomotion : MonoBehaviourPun {
 
         public PlayerControllerType ControllerType = PlayerControllerType.CharacterController;
 
@@ -179,7 +180,7 @@ namespace BNG {
 
 
         public virtual void UpdateInputs() {
-
+            
             // Start by resetting our previous frame's inputs
             movementX = 0;
             movementY = 0;
