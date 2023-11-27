@@ -41,13 +41,15 @@ EditorBuildSettings:
     path: Assets/BNG Framework/Integrations/PUN/MPDemo.unity
     guid: 1ef291d4030a6484f8bc6edeae91dda9
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 95738646979e66347937d1a88ead7f33,
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1f92c01ac0bdb41589c4e0448f5d49ea,
       type: 2}
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 2ec24d39f7b5ac84aad7e5df7b4fd3ea,
       type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 7c0d65f8139523c47a3ac0b1587ccdf6,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bc87842975b39e54c9a8257bb65aef55,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9f029d273c63b684ea4786e2d2170254,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: c4d58414a4052bb4f903ab9a2282c0df,
       type: 2}
     xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 2ae0a4a226e8d9e4aba56d1e2eb3977b,
       type: 2}

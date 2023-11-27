@@ -42,7 +42,7 @@ namespace DemoPhoton.Scripts.UI.UIWindow
         private void InputFieldRoomName()
         {
             RoomOptions options = new RoomOptions();
-            options.MaxPlayers = 2;
+            options.MaxPlayers = 4;
             
             var roomName = _inputRoomName.text;
             if (_inputRoomName.text == "")
