@@ -7,10 +7,15 @@ public class LithController : MonoBehaviour
 {
     [SerializeField] private Light[] lights;
     [SerializeField] private PhotonView photonView;
+    [SerializeField] private AudioSource audioSource;
     [PunRPC]
     public void EnabledLight(bool state)
     {
         photonView.RPC("OnOffLight", RpcTarget.All, state);
+        if(!audioSource.isPlaying)
+        {
+            photonView.RPC("PlaySound", RpcTarget.All);
+        }
     }
 
     [PunRPC]
@@ -20,5 +25,11 @@ public class LithController : MonoBehaviour
         {
             light.gameObject.SetActive(state);
         }
+    }
+
+    [PunRPC]
+    private void PlaySound()
+    {
+        audioSource.Play();
     }
 }
