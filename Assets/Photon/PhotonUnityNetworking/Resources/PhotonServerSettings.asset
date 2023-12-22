@@ -46,6 +46,12 @@ MonoBehaviour:
   - ShootRPC
   - Increment
   - SetText
+  - On
+  - OnLight
+  - Off
+  - OffLight
+  - EnabledLight
+  - OnOffLight
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
